@@ -203,7 +203,7 @@ def get_node_definition(node, var=None):
 def build_dataclass_from_data(name, data):
     base_node = get_base_node(name, data)
     build_tree(base_node)
-    specificy_duplicate_types(base_node)
+    specify_duplicate_types(base_node)
     models = get_node_classes(base_node)
     translate_line = get_node_definition(base_node)
     translate_func = f"def translate(response):\n\treturn {translate_line}\n"
@@ -215,7 +215,7 @@ def build_dataclass_from_data(name, data):
     return result
 
 
-def specificy_duplicate_types(base_node):
+def specify_duplicate_types(base_node):
     type_list = [node.type for node in node_generator(base_node)]
     basic_types = ['str', 'int', 'float', 'bool', 'NoneType', 'Any', 'list']
     dup_types = [type_ for type_ in type_list if type_ not in basic_types and type_list.count(type_) > 1]
