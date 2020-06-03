@@ -93,8 +93,6 @@ def build_tree(node):
             if new_type == "dict":
                 if node.name is not None:
                     new_type = node.name.capitalize()
-                    if new_type[-2:] == 'es':  # infer a singular object name from plural list name
-                        new_type = new_type[:-2]
                     if new_type[-1:] == 's':
                         new_type = new_type[:-1]
                 else:
