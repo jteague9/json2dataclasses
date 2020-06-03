@@ -8,21 +8,21 @@ import pytest
 
 @pytest.fixture
 def github_json():
-    with open('github.json') as file:
+    with open('test/github.json') as file:
         m = json.load(file)
     return m
 
 
 @pytest.fixture
 def articles_json():
-    with open('articles.json') as file:
+    with open('test/articles.json') as file:
         m = json.load(file)
     return m
 
 
 @pytest.fixture
 def errors_json():
-    with open('errors.json') as file:
+    with open('test/errors.json') as file:
         m = json.load(file)
     return m
 
@@ -227,7 +227,7 @@ def test_build_translate_example(errors_json, tmp_path):
 def test_cli_run(tmp_path, articles_json):
     module_name = "Articles"
     fileloc = tmp_path / (module_name + ".py")
-    res = os.system(f"python ../main.py -f articles.json -n {module_name} -o {fileloc}")
+    res = os.system(f"python main.py -f test/articles.json -n {module_name} -o {fileloc}")
     assert res == 0
     spec = spec_from_file_location(module_name, fileloc)
     out = module_from_spec(spec)
